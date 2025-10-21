@@ -6,10 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-
-const Contacts = () => {
+export default function Contacts() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -62,9 +59,7 @@ const Contacts = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      
+    <div className="flex flex-col">
       <section className="bg-gradient-to-br from-primary/10 to-secondary/10 py-12 md:py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Контакты</h1>
@@ -235,10 +230,6 @@ const Contacts = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
-};
-
-export default Contacts;
+}

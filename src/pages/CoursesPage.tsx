@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
@@ -28,69 +29,81 @@ export default function CoursesPage() {
   const courses = [
     {
       id: 1,
-      title: 'Веб-разработка с нуля',
+      title: 'Веб-разработка для начинающих',
       description: 'Освойте HTML, CSS, JavaScript и React. Создайте портфолио из 5 проектов',
       category: 'programming',
-      students: 1250,
+      categoryLabel: 'Программирование',
+      students: 1234,
       rating: 4.8,
       duration: '12 недель',
       level: 'Начальный',
-      price: '15 990 ₽'
+      price: '4 990 ₽',
+      image: 'https://cdn.poehali.dev/projects/57a6e078-001f-4b36-8ca7-a11eddc50e87/files/f03b9af0-04d4-43eb-a17d-e1a025c14b4d.jpg'
     },
     {
       id: 2,
-      title: 'Python для начинающих',
-      description: 'Изучите основы программирования на самом популярном языке',
+      title: 'Python для анализа данных',
+      description: 'Изучите Python, pandas, numpy. Анализируйте данные и стройте модели',
       category: 'programming',
-      students: 980,
+      categoryLabel: 'Программирование',
+      students: 2156,
       rating: 4.9,
-      duration: '8 недель',
-      level: 'Начальный',
-      price: '12 990 ₽'
+      duration: '10 недель',
+      level: 'Средний',
+      price: '5 990 ₽',
+      image: 'https://cdn.poehali.dev/projects/57a6e078-001f-4b36-8ca7-a11eddc50e87/files/7e4271c6-aeff-479f-835e-a60eeec8735e.jpg'
     },
     {
       id: 3,
       title: 'UI/UX дизайн',
       description: 'Научитесь создавать удобные и красивые интерфейсы в Figma',
       category: 'design',
-      students: 750,
+      categoryLabel: 'Дизайн',
+      students: 987,
       rating: 4.7,
-      duration: '10 недель',
+      duration: '8 недель',
       level: 'Средний',
-      price: '18 990 ₽'
+      price: '6 990 ₽',
+      image: 'https://cdn.poehali.dev/projects/57a6e078-001f-4b36-8ca7-a11eddc50e87/files/690cede7-e942-4fbc-a813-c8329fd3b377.jpg'
     },
     {
       id: 4,
       title: 'Цифровой маркетинг',
       description: 'Полный курс по интернет-маркетингу: SEO, контекст, SMM',
       category: 'marketing',
-      students: 620,
+      categoryLabel: 'Маркетинг',
+      students: 820,
       rating: 4.6,
-      duration: '14 недель',
-      level: 'Средний',
-      price: '19 990 ₽'
+      duration: '12 недель',
+      level: 'Начальный',
+      price: '7 990 ₽',
+      image: 'https://cdn.poehali.dev/projects/57a6e078-001f-4b36-8ca7-a11eddc50e87/files/f03b9af0-04d4-43eb-a17d-e1a025c14b4d.jpg'
     },
     {
       id: 5,
       title: 'Data Science и ML',
       description: 'Машинное обучение, анализ данных и нейронные сети на Python',
       category: 'programming',
-      students: 540,
+      categoryLabel: 'Программирование',
+      students: 640,
       rating: 4.9,
       duration: '16 недель',
       level: 'Продвинутый',
-      price: '24 990 ₽'
+      price: '9 990 ₽',
+      image: 'https://cdn.poehali.dev/projects/57a6e078-001f-4b36-8ca7-a11eddc50e87/files/7e4271c6-aeff-479f-835e-a60eeec8735e.jpg'
     },
     {
       id: 6,
       title: 'Графический дизайн',
       description: 'Создание визуальных концепций в Adobe Photoshop и Illustrator',
       category: 'design',
-      students: 480,
+      categoryLabel: 'Дизайн',
+      students: 580,
       rating: 4.5,
-      duration: '8 недель',
+      duration: '6 недель',
       level: 'Начальный',
-      price: '14 990 ₽'
+      price: '5 490 ₽',
+      image: 'https://cdn.poehali.dev/projects/57a6e078-001f-4b36-8ca7-a11eddc50e87/files/690cede7-e942-4fbc-a813-c8329fd3b377.jpg'
     },
   ];
 
@@ -153,43 +166,41 @@ export default function CoursesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCourses.map((course) => (
-              <Card key={course.id} className="flex flex-col hover:shadow-lg transition-shadow">
-                <CardContent className="p-6 flex flex-col flex-1">
-                  <div className="flex items-start justify-between mb-4">
-                    <span className="text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
-                      {course.level}
-                    </span>
-                    <span className="text-lg font-bold text-primary">
-                      {course.price}
-                    </span>
+              <Card key={course.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={course.image}
+                    alt={course.title}
+                    className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant="secondary">{course.categoryLabel}</Badge>
+                    <div className="flex items-center gap-1 text-sm">
+                      <Icon name="Star" className="h-4 w-4 fill-primary text-primary" />
+                      <span className="font-medium">{course.rating}</span>
+                    </div>
                   </div>
-
-                  <h3 className="text-xl font-semibold mb-3">{course.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4 flex-1">
+                  <CardTitle className="line-clamp-2">{course.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
                     {course.description}
                   </p>
-
-                  <div className="grid grid-cols-3 gap-2 mb-4 text-sm">
-                    <div className="flex items-center gap-1">
-                      <Icon name="Users" className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-xs">{course.students}</span>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Icon name="Users" className="h-4 w-4" />
+                      <span>{course.students} студентов</span>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Icon name="Star" className="h-4 w-4 text-yellow-500 fill-yellow-500" />
-                      <span className="text-xs">{course.rating}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Icon name="Clock" className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-xs">{course.duration}</span>
-                    </div>
+                    <div className="text-lg font-bold">{course.price}</div>
                   </div>
-
-                  <Link to={`/course/${course.id}`}>
-                    <Button className="w-full">
+                  <Button asChild className="w-full">
+                    <Link to={`/course/${course.id}`}>
                       Подробнее
                       <Icon name="ArrowRight" className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </CardContent>
               </Card>
             ))}
