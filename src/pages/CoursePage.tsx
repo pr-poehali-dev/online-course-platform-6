@@ -1,346 +1,169 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { useParams } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import Icon from '@/components/ui/icon';
+import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
-const CoursePage = () => {
+export default function CoursePage() {
   const { id } = useParams();
 
   const course = {
-    id: 1,
-    title: 'Python для начинающих',
-    description: 'Полный курс по программированию на Python для тех, кто начинает с нуля. Изучите основы языка, структуры данных, ООП и создайте свои первые проекты.',
-    image: 'https://cdn.poehali.dev/projects/57a6e078-001f-4b36-8ca7-a11eddc50e87/files/7e5fb1c9-e59b-4540-9555-a31b2fc1c144.jpg',
-    category: 'Программирование',
-    duration: '8 недель',
-    students: 1247,
+    id: Number(id),
+    title: 'Веб-разработка с нуля',
+    description: 'Комплексный курс по веб-разработке для начинающих',
+    longDescription: 'Этот курс даст вам все необходимые знания для старта карьеры веб-разработчика. Вы изучите HTML, CSS, JavaScript, React и создадите 5 полноценных проектов для портфолио.',
+    students: 1250,
     rating: 4.8,
-    price: '3 990 ₽',
+    reviewsCount: 342,
+    duration: '12 недель',
     level: 'Начальный',
-    lessons: 42,
-    hours: 24,
-    certificate: true,
-    author: {
+    price: '15 990 ₽',
+    instructor: {
       name: 'Иван Петров',
-      role: 'Senior Python Developer',
-      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ivan'
-    }
+      title: 'Senior Full-stack Developer',
+      avatar: 'IP',
+      students: 5420,
+      courses: 8
+    },
+    modules: [
+      {
+        id: 1,
+        title: 'Введение в HTML',
+        duration: '2 часа',
+        lessons: [
+          { id: 1, title: 'Что такое HTML', duration: '15 мин', completed: true },
+          { id: 2, title: 'Структура HTML документа', duration: '20 мин', completed: true },
+          { id: 3, title: 'Основные теги', duration: '30 мин', completed: false },
+          { id: 4, title: 'Практика: создаем первую страницу', duration: '45 мин', completed: false },
+        ]
+      },
+      {
+        id: 2,
+        title: 'CSS - стилизация сайтов',
+        duration: '3 часа',
+        lessons: [
+          { id: 5, title: 'Основы CSS', duration: '25 мин', completed: false },
+          { id: 6, title: 'Flexbox и Grid', duration: '40 мин', completed: false },
+          { id: 7, title: 'Адаптивная верстка', duration: '35 мин', completed: false },
+        ]
+      },
+      {
+        id: 3,
+        title: 'JavaScript для начинающих',
+        duration: '5 часов',
+        lessons: [
+          { id: 8, title: 'Переменные и типы данных', duration: '30 мин', completed: false },
+          { id: 9, title: 'Функции и условия', duration: '40 мин', completed: false },
+          { id: 10, title: 'Работа с DOM', duration: '50 мин', completed: false },
+        ]
+      },
+    ],
+    learningOutcomes: [
+      'Создавать адаптивные сайты с нуля',
+      'Работать с HTML, CSS и JavaScript',
+      'Использовать React для создания интерфейсов',
+      'Публиковать проекты в интернете',
+      'Создать портфолио из 5 проектов'
+    ],
+    requirements: [
+      'Компьютер или ноутбук',
+      'Желание учиться',
+      'Не требуется опыт программирования'
+    ]
   };
 
-  const curriculum = [
-    {
-      module: 'Введение в Python',
-      lessons: [
-        { title: 'Установка Python и настройка среды', duration: '15 мин', completed: true },
-        { title: 'Первая программа на Python', duration: '20 мин', completed: true },
-        { title: 'Переменные и типы данных', duration: '30 мин', completed: false },
-        { title: 'Операторы и выражения', duration: '25 мин', completed: false }
-      ]
-    },
-    {
-      module: 'Управляющие конструкции',
-      lessons: [
-        { title: 'Условные операторы if-else', duration: '30 мин', completed: false },
-        { title: 'Циклы for и while', duration: '35 мин', completed: false },
-        { title: 'Практика: решение задач', duration: '45 мин', completed: false }
-      ]
-    },
-    {
-      module: 'Функции и модули',
-      lessons: [
-        { title: 'Создание и вызов функций', duration: '30 мин', completed: false },
-        { title: 'Аргументы и возвращаемые значения', duration: '25 мин', completed: false },
-        { title: 'Импорт модулей', duration: '20 мин', completed: false }
-      ]
-    },
-    {
-      module: 'Работа с данными',
-      lessons: [
-        { title: 'Списки и кортежи', duration: '40 мин', completed: false },
-        { title: 'Словари и множества', duration: '35 мин', completed: false },
-        { title: 'Работа с файлами', duration: '30 мин', completed: false }
-      ]
-    }
-  ];
-
-  const completedLessons = curriculum.reduce((acc, module) => 
-    acc + module.lessons.filter(l => l.completed).length, 0
+  const totalLessons = course.modules.reduce((acc, module) => acc + module.lessons.length, 0);
+  const completedLessons = course.modules.reduce(
+    (acc, module) => acc + module.lessons.filter(l => l.completed).length, 
+    0
   );
-  const totalLessons = curriculum.reduce((acc, module) => acc + module.lessons.length, 0);
-  const progress = Math.round((completedLessons / totalLessons) * 100);
+  const progressPercent = Math.round((completedLessons / totalLessons) * 100);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      
-      <section className="py-8 md:py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-8">
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <Badge>{course.category}</Badge>
-                  <Badge variant="secondary">{course.level}</Badge>
-                </div>
-                <h1 className="text-3xl md:text-4xl font-bold mb-4">{course.title}</h1>
-                <p className="text-lg text-muted-foreground mb-6">{course.description}</p>
-
-                <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-6">
-                  <div className="flex items-center gap-2">
-                    <Icon name="Star" size={18} className="fill-yellow-400 text-yellow-400" />
-                    <span className="font-semibold text-foreground">{course.rating}</span>
-                    <span>({course.students} отзывов)</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Icon name="Users" size={18} />
-                    <span>{course.students} студентов</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Icon name="Clock" size={18} />
-                    <span>{course.hours} часов видео</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Icon name="BookOpen" size={18} />
-                    <span>{course.lessons} уроков</span>
-                  </div>
-                </div>
-
-                <img 
-                  src={course.image} 
-                  alt={course.title} 
-                  className="w-full h-64 md:h-96 object-cover rounded-xl mb-8"
-                />
+    <div className="flex flex-col min-h-screen">
+      <section className="py-12 bg-gradient-to-br from-primary/10 to-accent/5">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-6">
+              <div className="space-y-2">
+                <span className="text-sm font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
+                  {course.level}
+                </span>
+                <h1 className="text-4xl lg:text-5xl font-bold mt-4">{course.title}</h1>
+                <p className="text-lg text-muted-foreground">{course.description}</p>
               </div>
 
-              <Tabs defaultValue="program" className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="program">Программа</TabsTrigger>
-                  <TabsTrigger value="about">О курсе</TabsTrigger>
-                  <TabsTrigger value="reviews">Отзывы</TabsTrigger>
-                </TabsList>
+              <div className="flex flex-wrap gap-6 text-sm">
+                <div className="flex items-center gap-2">
+                  <Icon name="Star" className="h-5 w-5 text-yellow-500 fill-yellow-500" />
+                  <span className="font-semibold">{course.rating}</span>
+                  <span className="text-muted-foreground">({course.reviewsCount} отзывов)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Users" className="h-5 w-5 text-muted-foreground" />
+                  <span>{course.students} студентов</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Clock" className="h-5 w-5 text-muted-foreground" />
+                  <span>{course.duration}</span>
+                </div>
+              </div>
 
-                <TabsContent value="program" className="space-y-4">
-                  <div className="mb-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium">Ваш прогресс</span>
-                      <span className="text-sm text-muted-foreground">{completedLessons} из {totalLessons} уроков</span>
-                    </div>
-                    <Progress value={progress} className="h-2" />
-                  </div>
-
-                  <Accordion type="single" collapsible className="w-full">
-                    {curriculum.map((module, index) => (
-                      <AccordionItem key={index} value={`module-${index}`}>
-                        <AccordionTrigger className="hover:no-underline">
-                          <div className="flex items-center gap-3 text-left">
-                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                              <span className="text-sm font-semibold text-primary">{index + 1}</span>
-                            </div>
-                            <span className="font-semibold">{module.module}</span>
-                          </div>
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          <div className="space-y-2 pl-11">
-                            {module.lessons.map((lesson, lessonIndex) => (
-                              <div 
-                                key={lessonIndex}
-                                className="flex items-center justify-between p-3 rounded-lg hover:bg-muted transition-colors cursor-pointer"
-                              >
-                                <div className="flex items-center gap-3">
-                                  {lesson.completed ? (
-                                    <Icon name="CheckCircle2" size={20} className="text-green-500" />
-                                  ) : (
-                                    <Icon name="Circle" size={20} className="text-muted-foreground" />
-                                  )}
-                                  <span className={lesson.completed ? 'line-through text-muted-foreground' : ''}>
-                                    {lesson.title}
-                                  </span>
-                                </div>
-                                <span className="text-sm text-muted-foreground">{lesson.duration}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </TabsContent>
-
-                <TabsContent value="about" className="space-y-6">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">Чему вы научитесь</h3>
-                    <ul className="space-y-3">
-                      {[
-                        'Писать чистый и эффективный код на Python',
-                        'Работать с переменными, типами данных и операторами',
-                        'Использовать условия, циклы и функции',
-                        'Работать со структурами данных: списки, словари, множества',
-                        'Читать и записывать данные в файлы',
-                        'Применять принципы объектно-ориентированного программирования'
-                      ].map((item, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <Icon name="Check" size={20} className="text-green-500 mt-0.5 flex-shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">Требования</h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li className="flex items-start gap-2">
-                        <span>•</span>
-                        <span>Базовые навыки работы с компьютером</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span>•</span>
-                        <span>Желание учиться программированию</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span>•</span>
-                        <span>Никаких предварительных знаний не требуется</span>
-                      </li>
-                    </ul>
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="reviews" className="space-y-6">
-                  <div className="flex items-center gap-6 mb-8">
-                    <div className="text-center">
-                      <div className="text-5xl font-bold mb-2">{course.rating}</div>
-                      <div className="flex items-center gap-1 mb-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Icon key={i} name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
-                        ))}
-                      </div>
-                      <div className="text-sm text-muted-foreground">Рейтинг курса</div>
-                    </div>
-                    <div className="flex-1">
-                      <div className="space-y-2">
-                        {[5, 4, 3, 2, 1].map((stars) => (
-                          <div key={stars} className="flex items-center gap-3">
-                            <span className="text-sm w-12">{stars} звезд</span>
-                            <Progress value={stars === 5 ? 80 : stars === 4 ? 15 : 5} className="h-2" />
-                            <span className="text-sm text-muted-foreground w-12 text-right">
-                              {stars === 5 ? '80%' : stars === 4 ? '15%' : '5%'}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-6">
-                    {[
-                      {
-                        name: 'Анна Смирнова',
-                        rating: 5,
-                        date: '2 дня назад',
-                        text: 'Отличный курс для начинающих! Все объясняется понятно и доступно. Особенно понравились практические задания.'
-                      },
-                      {
-                        name: 'Дмитрий Козлов',
-                        rating: 5,
-                        date: '1 неделю назад',
-                        text: 'Прошел курс за месяц, уже начал применять знания в работе. Рекомендую!'
-                      }
-                    ].map((review, index) => (
-                      <Card key={index}>
-                        <CardHeader>
-                          <div className="flex items-start justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                                <span className="font-semibold text-primary">
-                                  {review.name.split(' ').map(n => n[0]).join('')}
-                                </span>
-                              </div>
-                              <div>
-                                <CardTitle className="text-base">{review.name}</CardTitle>
-                                <CardDescription>{review.date}</CardDescription>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              {[...Array(review.rating)].map((_, i) => (
-                                <Icon key={i} name="Star" size={14} className="fill-yellow-400 text-yellow-400" />
-                              ))}
-                            </div>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-muted-foreground">{review.text}</p>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </TabsContent>
-              </Tabs>
+              <div className="flex items-center gap-4 pt-4">
+                <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center font-semibold text-primary">
+                  {course.instructor.avatar}
+                </div>
+                <div>
+                  <p className="font-semibold">{course.instructor.name}</p>
+                  <p className="text-sm text-muted-foreground">{course.instructor.title}</p>
+                </div>
+              </div>
             </div>
 
             <div className="lg:col-span-1">
               <Card className="sticky top-20">
                 <CardContent className="p-6 space-y-6">
-                  <div>
-                    <div className="text-3xl font-bold text-primary mb-2">{course.price}</div>
-                    <p className="text-sm text-muted-foreground">Единоразовая оплата</p>
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-primary mb-2">{course.price}</div>
+                    <p className="text-sm text-muted-foreground">Единоразовый платеж</p>
                   </div>
 
                   <Button className="w-full" size="lg">
-                    Купить курс
+                    <Icon name="ShoppingCart" className="mr-2 h-5 w-5" />
+                    Записаться на курс
                   </Button>
 
                   <div className="space-y-3 pt-4 border-t">
-                    <div className="flex items-start gap-3">
-                      <Icon name="PlayCircle" size={20} className="text-primary mt-0.5" />
-                      <div>
-                        <div className="font-medium">{course.hours} часов видео</div>
-                        <div className="text-sm text-muted-foreground">Доступ навсегда</div>
+                    <h4 className="font-semibold">Этот курс включает:</h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Icon name="Video" className="h-4 w-4 text-muted-foreground" />
+                        <span>20 часов видео</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Icon name="FileText" className="h-4 w-4 text-muted-foreground" />
+                        <span>15 статей</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Icon name="Download" className="h-4 w-4 text-muted-foreground" />
+                        <span>Материалы для скачивания</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Icon name="Award" className="h-4 w-4 text-muted-foreground" />
+                        <span>Сертификат по окончании</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Icon name="Infinity" className="h-4 w-4 text-muted-foreground" />
+                        <span>Доступ навсегда</span>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <Icon name="FileText" size={20} className="text-primary mt-0.5" />
-                      <div>
-                        <div className="font-medium">{course.lessons} уроков</div>
-                        <div className="text-sm text-muted-foreground">С практикой</div>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Icon name="Award" size={20} className="text-primary mt-0.5" />
-                      <div>
-                        <div className="font-medium">Сертификат</div>
-                        <div className="text-sm text-muted-foreground">После завершения</div>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Icon name="Smartphone" size={20} className="text-primary mt-0.5" />
-                      <div>
-                        <div className="font-medium">Доступ с любого устройства</div>
-                        <div className="text-sm text-muted-foreground">ПК, планшет, телефон</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t">
-                    <div className="flex items-center gap-3 mb-3">
-                      <img 
-                        src={course.author.avatar} 
-                        alt={course.author.name}
-                        className="w-12 h-12 rounded-full"
-                      />
-                      <div>
-                        <div className="font-medium">{course.author.name}</div>
-                        <div className="text-sm text-muted-foreground">{course.author.role}</div>
-                      </div>
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      Автор курса с 10+ летним опытом разработки
-                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -349,9 +172,163 @@ const CoursePage = () => {
         </div>
       </section>
 
-      <Footer />
+      <section className="py-12">
+        <div className="container mx-auto px-4 lg:px-6">
+          <Tabs defaultValue="content" className="space-y-6">
+            <TabsList className="grid w-full max-w-md grid-cols-3">
+              <TabsTrigger value="content">Программа</TabsTrigger>
+              <TabsTrigger value="about">О курсе</TabsTrigger>
+              <TabsTrigger value="progress">Прогресс</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="content" className="space-y-4">
+              <div className="space-y-2 mb-6">
+                <h2 className="text-2xl font-bold">Программа курса</h2>
+                <p className="text-muted-foreground">
+                  {course.modules.length} модулей • {totalLessons} уроков
+                </p>
+              </div>
+
+              <Accordion type="single" collapsible className="space-y-2">
+                {course.modules.map((module) => (
+                  <AccordionItem key={module.id} value={`module-${module.id}`} className="border rounded-lg px-4">
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center justify-between w-full pr-4">
+                        <div className="flex items-center gap-3">
+                          <Icon name="BookOpen" className="h-5 w-5 text-primary" />
+                          <span className="font-semibold">{module.title}</span>
+                        </div>
+                        <span className="text-sm text-muted-foreground">{module.duration}</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="space-y-2 pt-2">
+                        {module.lessons.map((lesson) => (
+                          <div key={lesson.id} className="flex items-center justify-between py-2 px-3 hover:bg-muted/50 rounded-md">
+                            <div className="flex items-center gap-3">
+                              {lesson.completed ? (
+                                <Icon name="CheckCircle2" className="h-4 w-4 text-accent" />
+                              ) : (
+                                <Icon name="Circle" className="h-4 w-4 text-muted-foreground" />
+                              )}
+                              <span className="text-sm">{lesson.title}</span>
+                            </div>
+                            <span className="text-xs text-muted-foreground">{lesson.duration}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </TabsContent>
+
+            <TabsContent value="about" className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-bold mb-4">О курсе</h2>
+                <p className="text-muted-foreground leading-relaxed">{course.longDescription}</p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Чему вы научитесь</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {course.learningOutcomes.map((outcome, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <Icon name="CheckCircle2" className="h-5 w-5 text-accent mt-0.5" />
+                      <span>{outcome}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Требования</h3>
+                <div className="space-y-2">
+                  {course.requirements.map((req, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <Icon name="Dot" className="h-5 w-5 text-muted-foreground mt-0.5" />
+                      <span className="text-muted-foreground">{req}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Преподаватель</h3>
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center text-xl font-semibold text-primary">
+                        {course.instructor.avatar}
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-lg">{course.instructor.name}</h4>
+                        <p className="text-muted-foreground mb-3">{course.instructor.title}</p>
+                        <div className="flex gap-6 text-sm">
+                          <div className="flex items-center gap-1">
+                            <Icon name="Users" className="h-4 w-4" />
+                            <span>{course.instructor.students} студентов</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Icon name="BookOpen" className="h-4 w-4" />
+                            <span>{course.instructor.courses} курсов</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="progress" className="space-y-6">
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Ваш прогресс</h2>
+                <Card>
+                  <CardContent className="p-6 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium">Общий прогресс</span>
+                      <span className="text-2xl font-bold text-primary">{progressPercent}%</span>
+                    </div>
+                    <Progress value={progressPercent} className="h-3" />
+                    <div className="flex justify-between text-sm text-muted-foreground">
+                      <span>{completedLessons} из {totalLessons} уроков завершено</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Прогресс по модулям</h3>
+                <div className="space-y-4">
+                  {course.modules.map((module) => {
+                    const moduleCompleted = module.lessons.filter(l => l.completed).length;
+                    const moduleTotal = module.lessons.length;
+                    const modulePercent = Math.round((moduleCompleted / moduleTotal) * 100);
+
+                    return (
+                      <Card key={module.id}>
+                        <CardContent className="p-4">
+                          <div className="space-y-3">
+                            <div className="flex items-center justify-between">
+                              <h4 className="font-semibold">{module.title}</h4>
+                              <span className="text-sm font-medium text-primary">{modulePercent}%</span>
+                            </div>
+                            <Progress value={modulePercent} className="h-2" />
+                            <p className="text-xs text-muted-foreground">
+                              {moduleCompleted} из {moduleTotal} уроков
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </section>
     </div>
   );
-};
-
-export default CoursePage;
+}
